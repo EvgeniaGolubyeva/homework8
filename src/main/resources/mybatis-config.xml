@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeHandlers>
+        <!-- why do I have to specify javaType ? -->
+        <typeHandler javaType="java.time.LocalDateTime" handler="auction.mybatis.LocalDateTimeTypeHandler"/>
+    </typeHandlers>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="JNDI">
+                <property name="data_source" value="java:jboss/datasources/AuctionDS"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper class="auction.mybatis.ProductMapper"/>
+        <mapper class="auction.mybatis.BidMapper"/>
+    </mappers>
+</configuration>

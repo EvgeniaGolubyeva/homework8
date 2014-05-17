@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="auction.mybatis.ProductMapper" >
+
+    <resultMap id="ProductResultMap" type="auction.entity.Product" >
+        <id column="PRODUCT_ID" property="id"/>
+    </resultMap>
+
+
+    <select id="getSearchProducts" resultMap="ProductResultMap" parameterType="java.util.Map">
+        select * from PRODUCT where PRODUCT_ID in
+
+        (select p.PRODUCT_ID from PRODUCT p left join BID b on p.PRODUCT_ID = b.PRODUCT_ID
+
+        <where>
+            <if test="title != null">
+                and lower(p.TITLE) like lower('%'||#{title}||'%')
+            </if>
+
+            <if test="date != null">
+                and p.AUCTION_END_TIME &lt;= #{date}
+            </if>
+
+            <if test="numberOfBids == 0">
+                <if test="lowPrice != null">
+                  and p.MINIMAL_PRICE >= #{lowPrice}
+                </if>
+                <if test="highPrice != null">
+                    and p.MINIMAL_PRICE &lt;= #{highPrice}
+                </if>
+            </if>
+        </where>
+
+        <if test="numberOfBids != null">
+            GROUP BY p.PRODUCT_ID having count(BID_ID) = #{numberOfBids}
+            <if test="numberOfBids > 0 and lowPrice != null">
+                and max(b.AMOUNT) >= #{lowPrice}
+            </if>
+            <if test="numberOfBids > 0 and highPrice != null">
+                and max(b.AMOUNT) &lt;= #{highPrice}
+            </if>
+        </if>
+        )
+
+    </select>
+</mapper>

@@ -1,0 +1,70 @@
+<div>
+    <!-- uses "/" instead of ">" drawn in the mockup-->
+    <ol class="breadcrumb">
+        <li><a href="#/home">Home</a></li>
+        <li class="active">Search Results</li>
+    </ol>
+
+    <auction-search-form></auction-search-form>
+
+    <div class="row">
+
+        <!-- search product list-->
+
+        <ul id="search-results-list" class="list-unstyled">
+
+            <li class="col-md-6" ng-repeat="product in ctrl.searchProducts">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="#/product/{{product.id}}"><img ng-src="{{product.thumb}}" alt="" class="img-responsive"></a>
+                    </div>
+
+                    <div class="product-description-holder col-md-8">
+                        <h2><a href="#/product/{{product.id}}">{{product.title}}</a></h2>
+
+                        <p>
+                            <b>Item's description:</b> {{product.description}}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- on mockup for SmartPhone the order is changed: price, watchers, auction - is this correct??? -->
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="col-sm-12 col-xs-5">
+                            {{product.timeleft}}
+                        </div>
+                        <div class="col-sm-12 col-xs-7">
+                            Today 15.23
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="col-sm-12 col-xs-5">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="badge">{{product.watchers}}</span>
+                        </div>
+                        <div class="col-sm-12 col-xs-7">
+                            Watchers
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="col-sm-12 col-xs-5">
+                            {{product.price | currency}}
+                        </div>
+                        <div class="col-sm-12 col-xs-7">
+                            Current Price
+                        </div>
+                    </div>
+                </div>
+
+            </li>
+
+        </ul>
+
+        <!-- / search product list-->
+
+    </div>
+</div>

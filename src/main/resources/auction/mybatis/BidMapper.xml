@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="auction.mybatis.BidMapper" >
+
+    <resultMap id="BidResultMap" type="auction.entity.Bid" autoMapping="true">
+        <id column="BID_ID" property="id"/>
+        <association column="PRODUCT_ID" property="product" resultMap="auction.mybatis.ProductMapper.ProductResultMap"/>
+        <association column="BIDDER_ID" property="user" select="selectUserById"/>
+    </resultMap>
+
+    <select id="selectUserById" resultMap="UserResultMap">
+        select * from AUCTION_USER where USER_ID = #{id}
+    </select>
+
+    <resultMap id="UserResultMap" type="auction.entity.User" >
+        <id column="USER_ID" property="id"/>
+        <result column="USER_NAME" property="name"/>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,21 @@
+<div class="row form-group">
+
+    <div class="col-xs-6">
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input class="form-control" ng-model="lowPrice" type="number" min="{{minPrice}}" max="{{maxPrice}}">
+        </div>
+    </div>
+
+    <div class="col-xs-6">
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input class="form-control" ng-model="highPrice" type="number" min="{{minPrice}}" max="{{maxPrice}}">
+        </div>
+    </div>
+
+</div>
+
+<div class="form-group">
+    <div class="priceRangeSlider"></div>
+</div>

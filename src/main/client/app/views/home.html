@@ -1,0 +1,70 @@
+<!--
+ Use this view to render the home page with carousel and featured products list.
+ -->
+
+<div class="row">
+
+    <!-- Featured Products -->
+
+    <div id="featured-product-carousel" class="carousel slide" data-pause="hover" data-wrap="true"
+         data-interval="3000">
+        <ol class="carousel-indicators">
+            <li data-target="#featured-product-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#featured-product-carousel" data-slide-to="1" class=""></li>
+            <li data-target="#featured-product-carousel" data-slide-to="2" class=""></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="images/promo-product-1.jpg" alt="ABC Auction Deals" class="img-responsive center-block">
+            </div>
+            <div class="item">
+                <img src="images/promo-product-2.jpg" alt="ABC Auction Deals" class="img-responsive center-block">
+            </div>
+            <div class="item">
+                <img src="images/promo-product-3.jpg" alt="ABC Auction Deals" class="img-responsive center-block">
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="javascript:$('.carousel').carousel('prev');">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="javascript:$('.carousel').carousel('next');">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+
+    <!-- / Featured Products -->
+
+</div>
+
+<br/><br/>
+
+<div class="row">
+
+    <!-- Featured Products list with thumbnails and description  -->
+
+    <ul id="featured-items-list" class="list-unstyled">
+
+        <li class="col-sm-4" ng-repeat="product in ctrl.featuredProducts">
+
+            <div class="col-md-4">
+                <a ng-href="#/product/{{product.id}}"><img ng-src="{{product.thumb}}" alt="" class="img-responsive"></a>
+            </div>
+
+            <div class="product-description-holder col-md-8">
+                <h2><a href="#/product/{{product.id}}">{{product.title}}</a></h2>
+
+                <p>
+                    <b>Item's description:</b> {{product.description}}
+                </p>
+            </div>
+
+        </li>
+
+    </ul>
+
+    <!-- / Featured Products list with thumbnails and description  -->
+
+</div>
+
