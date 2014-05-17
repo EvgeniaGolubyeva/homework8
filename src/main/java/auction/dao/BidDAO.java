@@ -30,7 +30,7 @@ public class BidDAO {
     }
 
     @Inject
-    public void setSfh(SqlSessionFactoryHolder sfh) {
+    public void setSessionFactoryHolder(SqlSessionFactoryHolder sfh) {
         this.sfh = sfh;
     }
 }
